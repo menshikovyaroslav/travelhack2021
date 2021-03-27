@@ -25,5 +25,13 @@ namespace TravelApi.Controllers
             var clients = Database.GetClients();
             return Request.CreateResponse(HttpStatusCode.OK, clients);
         }
+
+        [Route("api/getClient/{clientId}")]
+        [HttpGet]
+        public HttpResponseMessage GetClients(long clientId)
+        {
+            var client = Database.GetClient(clientId);
+            return Request.CreateResponse(HttpStatusCode.OK, client);
+        }
     }
 }

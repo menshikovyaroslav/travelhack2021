@@ -17,8 +17,6 @@ namespace TravelApi.Data
         {
             try
             {
-                Log.Instance.Info($"connString={connString}", "Database");
-
                 using (var db = new MetropolDb(new DbContextOptionsBuilder<MetropolDb>().UseNpgsql(connString).Options))
                 {
                     return db.Clients.ToList();
@@ -29,6 +27,22 @@ namespace TravelApi.Data
             }
 
             return new List<Client>();
+        }
+
+        public static Client GetClient(long clientId)
+        {
+            try
+            {
+                using (var db = new MetropolDb(new DbContextOptionsBuilder<MetropolDb>().UseNpgsql(connString).Options))
+                {
+                    return db.Clients.SingleOrDefault(c => c.Id == clientId);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return null;
         }
     }
 }
