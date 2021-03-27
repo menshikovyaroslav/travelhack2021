@@ -12,7 +12,15 @@ namespace TravelApi.Data
 {
     public static class Database
     {
+        /// <summary>
+        /// Строка подключения к базе данных
+        /// </summary>
         readonly static string connString = WebConfigurationManager.AppSettings["connectionString"];
+
+        /// <summary>
+        /// Метод получения всех клиентов
+        /// </summary>
+        /// <returns></returns>
         public static List<Client> GetClients()
         {
             try
@@ -22,13 +30,19 @@ namespace TravelApi.Data
                     return db.Clients.ToList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Instance.Error(1, ex.Message);
             }
 
             return new List<Client>();
         }
 
+        /// <summary>
+        /// Метод получения клиента по его идентификатору
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
         public static Client GetClient(long clientId)
         {
             try
@@ -38,8 +52,9 @@ namespace TravelApi.Data
                     return db.Clients.SingleOrDefault(c => c.Id == clientId);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Instance.Error(2, ex.Message);
             }
 
             return null;

@@ -37,24 +37,24 @@ namespace TravelApi.Classes
             }
         }
 
-        public void Error(int errorNumber, Exception exception, string owner)
+        public void Error(int errorNumber, Exception exception)
         {
             // Ошибки пишем в лог всегда
-            Add($"Ошибка {(errorNumber.ToString()).PadLeft(4, '0')}: {exception.Message}", "[ERROR]", owner);
+            Add($"Ошибка {(errorNumber.ToString()).PadLeft(4, '0')}: {exception.Message}", "[ERROR]");
         }
 
-        public void Error(int errorNumber, string errorText, string owner)
+        public void Error(int errorNumber, string errorText)
         {
             // Ошибки пишем в лог всегда
-            Add($"Ошибка {(errorNumber.ToString()).PadLeft(4, '0')}: {errorText}", "[ERROR]", owner);
+            Add($"Ошибка {(errorNumber.ToString()).PadLeft(4, '0')}: {errorText}", "[ERROR]");
         }
 
-        public void Info(string log, string owner)
+        public void Info(string log)
         {
-            Add(log, "[INFO]", owner);
+            Add(log, "[INFO]");
         }
 
-        private void Add(string log, string logLevel, string owner)
+        private void Add(string log, string logLevel)
         {
             lock (_logLocker)
             {
@@ -67,7 +67,7 @@ namespace TravelApi.Classes
                     }
                     // Запись в лог файл вместе с датой и уровнем лога.
                     string newFileName = Path.Combine(LogDirectory, String.Format("{0}.txt", DateTime.Now.ToString("yyyyMMdd")));
-                    File.AppendAllText(newFileName, $"{DateTime.Now} {owner} {logLevel} {log} \r\n", Encoding.UTF8);
+                    File.AppendAllText(newFileName, $"{DateTime.Now} {logLevel} {log} \r\n", Encoding.UTF8);
                 }
                 catch { }
             }
