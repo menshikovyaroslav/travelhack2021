@@ -17,6 +17,7 @@ namespace TravelApi.Models
         public string LastName { get; set; }
         [Column("middle_name")]
         public string MiddleName { get; set; }
-
+        [Column("created")]
+        public DateTime Created { get; set; }
     }
 }

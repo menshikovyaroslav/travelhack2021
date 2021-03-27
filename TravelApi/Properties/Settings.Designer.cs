@@ -22,14 +22,5 @@ namespace TravelApi.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=mobileuser;password=Qwerty123;database=travelhack")]
-        public string conn_string {
-            get {
-                return ((string)(this["conn_string"]));
-            }
-        }
     }
 }
