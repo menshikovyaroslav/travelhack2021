@@ -31,7 +31,9 @@ namespace TravelApi.Controllers
         public HttpResponseMessage GetClients(long clientId)
         {
             var client = Database.GetClient(clientId);
-            return Request.CreateResponse(HttpStatusCode.OK, client);
+
+            if (client == null) return Request.CreateResponse(HttpStatusCode.NotFound);
+            else return Request.CreateResponse(HttpStatusCode.OK, client);
         }
     }
 }
