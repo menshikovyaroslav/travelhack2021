@@ -18,16 +18,16 @@ namespace TravelApi.Data
         readonly static string connString = WebConfigurationManager.AppSettings["connectionString"];
 
         /// <summary>
-        /// Метод получения всех клиентов
+        /// Метод получения всех пользователей
         /// </summary>
         /// <returns></returns>
-        public static List<Client> GetClients()
+        public static List<User> GetUsers()
         {
             try
             {
                 using (var db = new MetropolDb(new DbContextOptionsBuilder<MetropolDb>().UseNpgsql(connString).Options))
                 {
-                    return db.Clients.ToList();
+                    return db.Users.ToList();
                 }
             }
             catch (Exception ex)
@@ -35,21 +35,21 @@ namespace TravelApi.Data
                 Log.Instance.Error(1, ex.Message);
             }
 
-            return new List<Client>();
+            return new List<User>();
         }
 
         /// <summary>
-        /// Метод получения клиента по его идентификатору
+        /// Метод получения пользователя по его идентификатору
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>
-        public static Client GetClient(long clientId)
+        public static User GetUserById(int userId)
         {
             try
             {
                 using (var db = new MetropolDb(new DbContextOptionsBuilder<MetropolDb>().UseNpgsql(connString).Options))
                 {
-                    return db.Clients.SingleOrDefault(c => c.Id == clientId);
+                    return db.Users.SingleOrDefault(c => c.Id == userId);
                 }
             }
             catch (Exception ex)

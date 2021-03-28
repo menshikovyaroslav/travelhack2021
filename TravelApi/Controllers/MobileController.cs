@@ -18,22 +18,22 @@ namespace TravelApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Hi world");
         }
 
-        [Route("api/getClients")]
+        [Route("api/getUsers")]
         [HttpGet]
-        public HttpResponseMessage GetClients()
+        public HttpResponseMessage GetUsers()
         {
-            var clients = Database.GetClients();
-            return Request.CreateResponse(HttpStatusCode.OK, clients);
+            var users = Database.GetUsers();
+            return Request.CreateResponse(HttpStatusCode.OK, users);
         }
 
-        [Route("api/getClient/{clientId}")]
+        [Route("api/getUser/{userId}")]
         [HttpGet]
-        public HttpResponseMessage GetClients(long clientId)
+        public HttpResponseMessage GetUserById(int userId)
         {
-            var client = Database.GetClient(clientId);
+            var user = Database.GetUserById(userId);
 
-            if (client == null) return Request.CreateResponse(HttpStatusCode.NotFound);
-            else return Request.CreateResponse(HttpStatusCode.OK, client);
+            if (user == null) return Request.CreateResponse(HttpStatusCode.NotFound);
+            else return Request.CreateResponse(HttpStatusCode.OK, user);
         }
     }
 }

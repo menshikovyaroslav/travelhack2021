@@ -9,14 +9,14 @@ namespace TravelApi.Models
     /// <summary>
     /// Модель Клиент
     /// </summary>
-    [Table("clients")]
-    public class Client
+    [Table("users")]
+    public class User
     {
         /// <summary>
         /// Идентификатор клиента
         /// </summary>
         [Column("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Имя клиента
@@ -33,8 +33,20 @@ namespace TravelApi.Models
         /// <summary>
         /// Отчество клиента
         /// </summary>
-        [Column("middle_name")]
-        public string MiddleName { get; set; }
+        [Column("patronymic")]
+        public string Patronymic { get; set; }
+
+        /// <summary>
+        /// Телефон клиента
+        /// </summary>
+        [Column("phone")]
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// Email клиента
+        /// </summary>
+        [Column("email")]
+        public string EMail { get; set; }
 
         /// <summary>
         /// Дата создания клиента
